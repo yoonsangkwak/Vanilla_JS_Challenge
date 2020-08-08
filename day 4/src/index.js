@@ -1,5 +1,5 @@
 // <⚠️ DONT DELETE THIS ⚠️>
-import "./styles.css";
+// import "./styles.css";
 // <⚠️ /DONT DELETE THIS ⚠️>
 
 const selectElement = document.querySelector(".national");
