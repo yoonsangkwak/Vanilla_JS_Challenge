@@ -7,20 +7,20 @@ toDoInput = toDoForm.querySelector("input"),
 finishList = document.querySelector(".js-finishList"),
 toDoList = document.querySelector(".js-toDoList");
 
-const TODOS_LS = "toDos";
-const FINISH_LS = "finish";
+const TODOS_LS = "PENDING";
+const FINISH_LS = "FINISHED";
 
-let toDos = [];
-let finish = [];
+let PENDING = [];
+let FINISHED = [];
 
 function deleteToDo(event) {
   const btn = event.target;
   const li = btn.parentNode;
   toDoList.removeChild(li);
-  const cleanToDos = toDos.filter(function (toDo) {
+  const cleanToDos = PENDING.filter(function (toDo) {
     return toDo.id !== parseInt(li.id);
   });
-  toDos = cleanToDos;
+  PENDING = cleanToDos;
   saveToDos();
 }
 
@@ -28,52 +28,42 @@ function deleteCheck(event) {
   const btn = event.target;
   const li = btn.parentNode;
   finishList.removeChild(li);
-  const cleanChecks = finish.filter(function (toDo) {
+  const cleanChecks = FINISHED.filter(function (toDo) {
     return toDo.id !== parseInt(li.id);
   });
-  finish = cleanChecks;
+  FINISHED = cleanChecks;
   saveFinish();
 }
 
 function checkToDo(event) {
   const btn = event.target;
   const li = btn.parentNode;
-  finishList.appendChild(li);
-  // toDoList.removeChild(li);
-  const cleanToDos = toDos.filter(function (toDo) {
+  toDoList.removeChild(li);
+  const cleanToDos = PENDING.filter(function (toDo) {
     return toDo.id !== parseInt(li.id);
   });
-  const checkToDos = toDos.filter(function (toDo) {
-    return toDo.id === parseInt(li.id);
-  });
-  toDos = cleanToDos;
-  finish.push(checkToDos);
+  PENDING = cleanToDos;
   saveToDos();
-  saveFinish();
+  paintFinish(li.childNodes[0].innerText);
 }
 
 function backToDo(event) {
   const btn = event.target;
   const li = btn.parentNode;
-  toDoList.appendChild(li);
-  // toDoList.removeChild(li);
-  const cleanChecks = toDos.filter(function (toDo) {
+  finishList.removeChild(li);
+  const cleanChecks = PENDING.filter(function (toDo) {
     return toDo.id !== parseInt(li.id);
   });
-  const backToDos = toDos.filter(function (toDo) {
-    return toDo.id === parseInt(li.id);
-  });
-  toDos.push(backToDos);
-  finish = cleanChecks;
-  saveToDos();
+  FINISHED = cleanChecks;
   saveFinish();
+  paintToDo(li.childNodes[0].innerText);
 }
 
 function saveToDos() {
-  localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+  localStorage.setItem(TODOS_LS, JSON.stringify(PENDING));
 }
 function saveFinish() {
-  localStorage.setItem(FINISH_LS, JSON.stringify(finish));
+  localStorage.setItem(FINISH_LS, JSON.stringify(FINISHED));
 }
 
 function paintToDo(text) {
@@ -81,9 +71,9 @@ function paintToDo(text) {
   const delBtn = document.createElement("button");
   const checkBtn = document.createElement("button");
   const span = document.createElement("span");
-  const newId = toDos.length + 1;
+  const newId = PENDING.length + 1;
   delBtn.innerText = "❌";
-  checkBtn.innerText = "✔";
+  checkBtn.innerText = "✅";
   delBtn.addEventListener("click", deleteToDo);
   checkBtn.addEventListener("click", checkToDo);
   span.innerText = text;
@@ -96,7 +86,7 @@ function paintToDo(text) {
     text: text,
     id: newId
   };
-  toDos.push(toDoObj);
+  PENDING.push(toDoObj);
   saveToDos();
 }
 
@@ -105,9 +95,9 @@ function paintFinish(text) {
   const delBtn = document.createElement("button");
   const checkBtn = document.createElement("button");
   const span = document.createElement("span");
-  const newId = toDos.length + 1;
+  const newId = PENDING.length + 1;
   delBtn.innerText = "❌";
-  checkBtn.innerText = "❎";
+  checkBtn.innerText = "🔙";
   delBtn.addEventListener("click", deleteCheck);
   checkBtn.addEventListener("click", backToDo);
   span.innerText = text;
@@ -120,7 +110,7 @@ function paintFinish(text) {
     text: text,
     id: newId
   };
-  finish.push(finishObj);
+  FINISHED.push(finishObj);
   saveFinish();
 }
 
