@@ -51,7 +51,7 @@ function backToDo(event) {
   const btn = event.target;
   const li = btn.parentNode;
   finishList.removeChild(li);
-  const cleanChecks = PENDING.filter(function (toDo) {
+  const cleanChecks = FINISHED.filter(function (toDo) {
     return toDo.id !== parseInt(li.id);
   });
   FINISHED = cleanChecks;
