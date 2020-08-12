@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+}
+
+.guessing {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#choice {
+  display: inline-block;
+}
+
+.play {
+  display: inline-block;
+}
