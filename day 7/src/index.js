@@ -4,22 +4,25 @@
 let slider = document.querySelector("#slider")
 
 function whoWin() {
-    let your = document.getElementById("choice").value;
-    let computer = Math.floor(Math.random() * slider.value);
+    let your = Number(document.getElementById("choice").value);
+    let computer = Math.round(Math.random() * slider.value);
     let battle = document.querySelector(".battle");
-    battle.innerText = "You choose: " + your + ", machine choose: " + computer;
     let result = document.querySelector(".result");
-    console.log(Number(your), computer)
-    if (Number(your) === computer) {
+    if (your === computer) {
+        battle.innerText = "You choose: " + your + ", machine choose: " + computer;
         result.innerText = "You Won!";
+    } else if (your < 0 || your > slider.value) {
+        battle.innerText = "Are you kidding me?"
+        result.innerText = "Out of range!";
     } else {
+        battle.innerText = "You choose: " + your + ", machine choose: " + computer;
         result.innerText = "You Lose!";
     }
 }
 
 function inputValue(e) {
     e.preventDefault();
-    val = e.target.value;
+    let val = e.target.value;
     const genbet = document.querySelector(".between");
     genbet.innerText = "Generate a number between 0 and " + val;
 }
