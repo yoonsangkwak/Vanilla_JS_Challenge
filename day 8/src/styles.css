@@ -41,6 +41,20 @@ body {
   align-items: center;
 }
 
+.equal {
+  margin: 5px;
+  border-radius: 20px;
+  display: flex;
+  background-color: #363439;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  width: 160px;
+  height: 90px;
+  justify-content: center;
+  align-items: center;
+}
+
 .reset {
   margin: 5px;
   margin-left: 10px;
@@ -84,6 +98,6 @@ body {
   align-items: center;
 }
 
-.num, .symbol, .reset, .zero-num:hover{
+.num, .symbol, .reset, .zero-num, .equal:hover{
   cursor: pointer;
 }

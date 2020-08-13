@@ -8,8 +8,6 @@ const zeroNum = document.querySelector(".zero-num");
 const answer = document.querySelector(".answer");
 const reset = document.querySelector(".reset");
 
-pocket = 0;
-
 numbers.forEach(function(target) {
     target.addEventListener("mousedown", msDown);
     target.addEventListener("mouseup", msUp);
@@ -33,38 +31,70 @@ function msUp(e) {
     document.getElementById(val).style.opacity = 1.0;
 }
 
+showingNum = "";
+result = 0;
 function output(e) {
-    temp = e.target.innerText;
-    answer.innerText += temp;
+    clickNum = e.target.innerText;
+    if (showingNum == "") {
+        answer.innerText = "";
+    }
+    showingNum += clickNum
+    answer.innerText = showingNum;
 }
 
 document.querySelector("#plus").addEventListener("mouseup", add);
 function add() {
-    pocket += answer.innerText;
-    answer.innerText = 0;
+    result += Number(showingNum);
+    showingNum = "";
+    a = true;
+    b = false;
+    c = false;
+    d = false;
 }
 
 document.querySelector("#minus").addEventListener("mouseup", substract);
 function substract() {
-    pocket -= answer.innerText;
-    answer.innerText = 0;
+    result -= Number(showingNum);
+    showingNum = "";
+    a = false;
+    b = true;
+    c = false;
+    d = false;
 }
 
 document.querySelector("#multiple").addEventListener("mouseup", multiple);
 function multiple() {
-    pocket *= answer.innerText;
-    answer.innerText = 0;
+    result *= Number(showingNum);
+    showingNum = "";
+    a = false;
+    b = false;
+    c = true;
+    d = false;
 }
 
 document.querySelector("#division").addEventListener("mouseup", divide);
 function divide() {
-    pocket /= answer.innerText;
-    answer.innerText = 0;
+    result /= Number(showingNum);
+    showingNum = "";
+    a = false;
+    b = false;
+    c = false;
+    d = true;
 }
 
 document.querySelector("#equal").addEventListener("mouseup", equal);
 function equal() {
-    answer.innerText = pocket;
+    if (a == true) {
+        result += Number(showingNum);
+    } else if (b == true) {
+        result -= Number(showingNum);
+    } else if (c == true) {
+        result *= Number(showingNum);
+    } else if (d == true) {
+        result /= Number(showingNum);
+    }
+    answer.innerText = result;
+    showingNum = "";
 }
 
 document.querySelector("#clear").addEventListener("mouseup", clear);
