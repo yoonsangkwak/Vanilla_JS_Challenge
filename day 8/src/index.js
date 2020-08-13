@@ -21,84 +21,240 @@ reset.addEventListener("mousedown", msDown);
 reset.addEventListener("mouseup", msUp);
 zeroNum.addEventListener("mousedown", msDown);
 zeroNum.addEventListener("mouseup", msUp);
+zeroNum.addEventListener("mouseup", output);
 
 function msDown(e) {
-    val = e.target.id
+    let val = e.target.id
     document.getElementById(val).style.opacity = 0.8;
 }
 function msUp(e) {
-    val = e.target.id
+    let val = e.target.id
     document.getElementById(val).style.opacity = 1.0;
 }
 
-showingNum = "";
-result = 0;
+let showingNum = "";
+let result = 0;
+let temp = 0;
+let a = false,
+ b = false,
+ c = false,
+ d = false,
+ end = false;
+ let calc = [];
+
 function output(e) {
-    clickNum = e.target.innerText;
+    let clickNum = e.target.innerText;
     if (showingNum == "") {
         answer.innerText = "";
     }
     showingNum += clickNum
     answer.innerText = showingNum;
+    temp = Number(showingNum);
 }
 
 document.querySelector("#plus").addEventListener("mouseup", add);
 function add() {
-    result += Number(showingNum);
-    showingNum = "";
-    a = true;
-    b = false;
-    c = false;
-    d = false;
+    if (end == false) {
+        calc.push(temp);
+
+        if (a == true) {
+            result = calc[0]+calc[1];
+            answer.innerText = result;
+            calc = [result];
+        } else if (b == true || c == true || d == true) {
+            calc.push(temp);
+
+            if (b == true) {
+                result = calc[0] - calc[1];
+                calc = [result];
+            } else if (c == true) {
+                result = calc[0] * calc[1];
+                calc = [result];
+            } else if (d == true) {
+                result = calc[0] / calc[1];
+                calc = [result];
+            }
+            answer.innerText = result;
+            a = true;
+            b = false;
+            c = false; 
+            d = false;
+        } else {
+            a = true;
+            b = false;
+            c = false;
+            d = false;
+            end = false;
+        }
+        showingNum = "";
+
+    } else {
+        calc = [result];
+        end = false;
+        a = true;
+    }
 }
 
 document.querySelector("#minus").addEventListener("mouseup", substract);
 function substract() {
-    result -= Number(showingNum);
-    showingNum = "";
-    a = false;
-    b = true;
-    c = false;
-    d = false;
+    if (end == false) {
+        calc.push(temp);
+        if (b == true) {
+            result = calc[0] - calc[1];
+            answer.innerText = result;
+            calc = [result];
+        } else if (a == true || c == true || d == true) {
+            calc.push(temp);
+
+            if (a == true) {
+                result = calc[0] + calc[1];
+                calc = [result];
+            } else if (c == true) {
+                result = calc[0] * calc[1];
+                calc = [result];
+            } else if (d == true) {
+                result = calc[0] / calc[1];
+                calc = [result];
+            }
+            answer.innerText = result;
+            a = false;
+            b = true;
+            c = false; 
+            d = false;
+        } else {
+            a = false;
+            b = true;
+            c = false;
+            d = false;
+            end = false;
+        }
+        showingNum = "";
+    } else {
+        calc = [result];
+        end = false;
+        b = true;
+    }
 }
 
 document.querySelector("#multiple").addEventListener("mouseup", multiple);
 function multiple() {
-    result *= Number(showingNum);
-    showingNum = "";
-    a = false;
-    b = false;
-    c = true;
-    d = false;
+    if (end == false) {
+        calc.push(temp);
+        if (c == true) {
+            result = calc[0] * calc[1];
+            answer.innerText = result;
+            calc = [result];
+        } else if (a == true || b == true || d == true) {
+            calc.push(temp);
+
+            if (a == true) {
+                result = calc[0] + calc[1];
+                calc = [result];
+            } else if (b == true) {
+                result = calc[0] - calc[1];
+                calc = [result];
+            } else if (d == true) {
+                result = calc[0] / calc[1];
+                calc = [result];
+            }
+            answer.innerText = result;
+            a = false;
+            b = false;
+            c = true; 
+            d = false;
+        } else {
+            a = false;
+            b = false;
+            c = true;
+            d = false;
+            end = false;
+        }
+        showingNum = "";
+    } else {
+        calc = [result];
+        end = false;
+        c = true;
+    }
 }
 
 document.querySelector("#division").addEventListener("mouseup", divide);
 function divide() {
-    result /= Number(showingNum);
-    showingNum = "";
-    a = false;
-    b = false;
-    c = false;
-    d = true;
+    if (end == false) {
+        calc.push(temp);
+        if (d == true) {
+            result = calc[0] / calc[1];
+            answer.innerText = result;
+            calc = [result];
+        } else if (a == true || b == true || c == true) {
+            calc.push(temp);
+
+            if (a == true) {
+                result = calc[0] + calc[1];
+                calc = [result];
+            } else if (b == true) {
+                result = calc[0] - calc[1];
+                calc = [result];
+            } else if (c == true) {
+                result = calc[0] * calc[1];
+                calc = [result];
+            }
+            answer.innerText = result;
+            a = false;
+            b = false;
+            c = false; 
+            d = true;
+        } else {
+            a = false;
+            b = false;
+            c = false;
+            d = true;
+            end = false;
+        }
+        showingNum = "";
+    } else {
+        calc = [result];
+        end = false;
+        d = true;
+    }
 }
 
 document.querySelector("#equal").addEventListener("mouseup", equal);
 function equal() {
     if (a == true) {
-        result += Number(showingNum);
+        calc.push(temp);
+        result = calc[0] + calc[1];
+        calc = [result];
     } else if (b == true) {
-        result -= Number(showingNum);
+        calc.push(temp);
+        result = calc[0] - calc[1];
+        calc = [result];
     } else if (c == true) {
-        result *= Number(showingNum);
+        calc.push(temp);
+        result = calc[0] * calc[1];
+        calc = [result];
     } else if (d == true) {
-        result /= Number(showingNum);
+        calc.push(temp);
+        result = calc[0] / calc[1];
+        calc = [result];
     }
     answer.innerText = result;
     showingNum = "";
+    a = false;
+    b = false;
+    c = false;
+    d = false;
+    end = true;
 }
 
 document.querySelector("#clear").addEventListener("mouseup", clear);
 function clear() {
     answer.innerText = 0;
-    pocket = 0;
+    showingNum = "";
+    result = 0;
+    calc = [];
+    a = false;
+    b = false;
+    c = false;
+    d = false;
+    end = false;
 }
