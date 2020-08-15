@@ -12,6 +12,7 @@
 .showing {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .form-input {
