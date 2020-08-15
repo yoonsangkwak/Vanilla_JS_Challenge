@@ -143,4 +143,22 @@ function init() {
   toDoForm.addEventListener("submit", handleSubmit);
 }
 
+
+const plusBtn = document.querySelector(".plus-btn");
+const jsInput = document.querySelector(".js-input");
+let click = false;
+plusBtn.addEventListener("click", function() {
+  if (click == false) {
+    plusBtn.classList.add("on");
+    plusBtn.classList.remove("off");
+    jsInput.classList.toggle("active");
+    click = true;
+  } else {
+    plusBtn.classList.remove("on");
+    plusBtn.classList.add("off");
+    jsInput.classList.toggle("active");
+    click = false;
+  }
+})
+
 init();

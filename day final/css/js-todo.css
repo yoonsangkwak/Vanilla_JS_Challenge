@@ -1,5 +1,15 @@
+.todo {
+    display: flex;
+    flex-wrap: wrap;
+    height: 280px;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 .js-pending,
 .js-finish {
+    margin-top: 0px;
+    width: 50%;
     display: flex;
     justify-content: center;
     color: white;
@@ -9,14 +19,114 @@
 
 .js-toDoList,
 .js-finishList {
+    width: 50%;
     display: flex;
-    justify-content: center;
+    align-items: center;
     color: white;
+    height: 180px;
     font-size: 16px;
     font-weight: bold;
+    flex-wrap: wrap;
+    flex-direction: column;
+    list-style: none;
+    padding: 0px 10px;
 }
 
 .js-toDoForm {
     display: flex;
     justify-content: center;
+}
+
+.js-input {
+    display: none;
+}
+
+.js-input.active {
+    margin: 20px;
+    display: flex;
+    width: 150px;
+    height: 25px;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-align: center;
+    animation: showUp 1s linear;
+    animation-fill-mode: forwards;
+}
+
+.todo-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 350px;
+    justify-content: center;
+    background-color: rgba( 255, 255, 255, 0.5 );
+    border-radius: 20px;
+}
+
+.plus-btn {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    width: 29px;
+    height: 29px;
+    color: white;
+    background-color: green;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid green;
+    cursor: pointer;
+}
+
+.plus-btn.on {
+    animation: spin 1s ease;
+    animation-fill-mode: forwards;
+}
+.plus-btn.off {
+    animation: backspin 1s ease;
+    animation-fill-mode: forwards;
+}
+
+.js-toDoList button,
+.js-finishList button {
+    background-color: transparent;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        translate: 0%;
+    } 100% {
+        transform: rotate(360deg);
+        translate: 25%;
+    }
+}
+
+@keyframes backspin {
+    0% {
+        transform: rotate(0deg);
+        transform: 25%;
+    } 100% {
+        transform: rotate(360deg);
+        translate: 0%;
+    }
+}
+
+@keyframes showUp {
+    0% {
+        opacity: 0;
+    } 100% {
+        opacity: 1;
+    }
+}
+@keyframes showDown {
+    0% {
+        opacity: 1;
+    } 100% {
+        opacity: 0;
+    }
 }
