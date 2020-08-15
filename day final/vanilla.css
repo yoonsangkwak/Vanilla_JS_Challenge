@@ -1,0 +1,9 @@
+@import "css/js-clock.css";
+@import "css/js-greet.css";
+@import "css/js-todo.css";
+@import "css/js-background.css";
+
+body {
+    font-family: sans-serif;
+}
+

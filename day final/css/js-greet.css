@@ -1,0 +1,13 @@
+.js-form {
+    display: none;
+}
+.greeting {
+    display: none;
+    color: white;
+    font-size: 24px;
+}
+
+.showing {
+    display: flex;
+    justify-content: center;
+}

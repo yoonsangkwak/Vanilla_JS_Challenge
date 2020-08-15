@@ -1,0 +1,22 @@
+.js-pending,
+.js-finish {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.js-toDoList,
+.js-finishList {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.js-toDoForm {
+    display: flex;
+    justify-content: center;
+}
