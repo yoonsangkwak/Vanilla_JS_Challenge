@@ -3,6 +3,9 @@ const COORDS = "coords";
 const weather = document.querySelector(".js-weather");
 const weatherMin = document.querySelector(".weather-min");
 const weatherMax = document.querySelector(".weather-max");
+const weatherimage = document.getElementById("weather-image");
+const weatherWind = document.querySelector(".weather-wind");
+const weatherHumidity = document.querySelector(".weather-humidity");
 
 
 function getWeather(lat, lng) {
@@ -11,13 +14,20 @@ function getWeather(lat, lng) {
         return response.json()
     })
     .then(function (json) {
+        const weatherImg = json.weather[0].icon;
         const temperature = json.main.temp;
         const place = json.name;
         const tempMin = json.main.temp_min;
         const tempMax = json.main.temp_max;
-        weather.innerText = `${temperature}℃ at ${place}`
+        const windSpeed = json.wind.speed;
+        const humidity = json.main.humidity;
+        let imgURL = "http://openweathermap.org/img/w/" + weatherImg + ".png";
+        weatherimage.src = imgURL;
+        weather.innerText = temperature + "℃ at " + place;
         weatherMin.innerText = "최저 온도: " + tempMin + "℃";
         weatherMax.innerText = "최고 온도: " + tempMax + "℃";
+        weatherWind.innerText = "풍속: " + windSpeed + "m/s";
+        weatherHumidity.innerText = "습도: " + humidity +"%";
     })
 }
 
@@ -60,6 +70,8 @@ function weatherMore() {
     weatherIcon.classList.toggle("active");
     weatherMin.classList.toggle("active");
     weatherMax.classList.toggle("active");
+    weatherWind.classList.toggle("active");
+    weatherHumidity.classList.toggle("active");
 }
 weatherDiv.addEventListener("click", weatherMore);
 

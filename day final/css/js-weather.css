@@ -5,7 +5,7 @@
     position: fixed;
     top: 10px;
     display: flex;
-    width: 180px;
+    width: 400px;
     height: 25px;
 }
 
@@ -46,12 +46,37 @@
     opacity: 0;
     cursor: default;
 }
+.weather-wind {
+    position: absolute;
+    display: block;
+    top: 60px;
+    left: 25px;
+    opacity: 0;
+    cursor: default;
+}
+.weather-humidity {
+    position: absolute;
+    display: block;
+    top: 80px;
+    left: 25px;
+    opacity: 0;
+    cursor: default;
+}
 
 .weather-min.active {
     animation: weather-show 1s ease forwards;
 }
 .weather-max.active {
-    animation: weather-show 2.5s ease forwards;
+    animation: weather-show 1s ease forwards;
+    animation-delay: 0.2s;
+}
+.weather-wind.active {
+    animation: weather-show 1.0s ease forwards;
+    animation-delay: 0.4s;
+}
+.weather-humidity.active {
+    animation: weather-show 1.0s ease forwards;
+    animation-delay: 0.6s;
 }
 
 @keyframes icon-spin {
