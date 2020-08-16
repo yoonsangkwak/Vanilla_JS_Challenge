@@ -1,15 +1,5 @@
-.todo {
-    display: flex;
-    flex-wrap: wrap;
-    height: 280px;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.js-pending,
-.js-finish {
+.js-pending {
     margin-top: 0px;
-    width: 50%;
     display: flex;
     justify-content: center;
     color: white;
@@ -17,9 +7,7 @@
     font-weight: bold;
 }
 
-.js-toDoList,
-.js-finishList {
-    width: 50%;
+.js-toDoList {
     display: flex;
     align-items: center;
     color: white;
@@ -44,7 +32,7 @@
 .js-input.active {
     margin: 20px;
     display: flex;
-    width: 150px;
+    width: 200px;
     height: 25px;
     border-radius: 20px;
     border: 1px solid black;
@@ -60,7 +48,7 @@
     width: 70%;
     height: 350px;
     justify-content: center;
-    background-color: rgba( 255, 255, 255, 0.5 );
+    background-color: rgba( 0, 0, 0, 0.5 );
     border-radius: 20px;
 }
 
@@ -88,14 +76,32 @@
     animation-fill-mode: forwards;
 }
 
-.js-toDoList button,
-.js-finishList button {
+.js-toDoList button {
     background-color: transparent;
     border: none;
     margin-left: 5px;
     cursor: pointer;
 }
 
+.clear {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba( 255, 255, 255, 0.5 );
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.clear:hover {
+    animation: clear-spin 2s linear infinite;
+}
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -121,5 +127,13 @@
         opacity: 0;
     } 100% {
         opacity: 1;
+    }
+}
+
+@keyframes clear-spin {
+    0% {
+        transform: rotate(0deg);
+    } 100% {
+        transform: rotate(-360deg);
     }
 }
