@@ -85,8 +85,12 @@ plusBtn.addEventListener("click", function() {
 const clearAll = document.querySelector(".clear");
 clearAll.addEventListener("click", clearEverything);
 function clearEverything() {
-  localStorage.clear();
-  window.location.reload();
+  if (confirm("모든 데이터가 초기화됩니다.") == true) {
+    localStorage.clear();
+    window.location.reload();
+  } else {
+    return;
+  }
 }
 
 init();
