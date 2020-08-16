@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -12,11 +12,11 @@
     align-items: center;
     color: white;
     height: 180px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     flex-wrap: wrap;
     flex-direction: column;
-    list-style: none;
+    list-style: circle;
     padding: 0px 10px;
 }
 
@@ -27,6 +27,11 @@
 
 .js-input {
     display: none;
+    outline: none;
+}
+
+.js-input::placeholder {
+    font-family: 'Do Hyeon';
 }
 
 .js-input.active {
@@ -55,6 +60,7 @@
 .plus-btn {
     margin: 20px;
     display: flex;
+    align-items: center;
     justify-content: center;
     width: 29px;
     height: 29px;

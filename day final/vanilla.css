@@ -3,8 +3,9 @@
 @import "css/js-todo.css";
 @import "css/js-background.css";
 @import "css/js-weather.css";
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 body {
-    font-family: sans-serif;
+    font-family: 'Do Hyeon', sans-serif;
 }
 
