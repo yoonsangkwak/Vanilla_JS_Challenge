@@ -1,4 +1,4 @@
-const API_KEY = "39b21a1bb381628bfa14045db5d8ea84";
+const API_KEY = "secret";
 const COORDS = "coords";
 const weather = document.querySelector(".js-weather");
 const weatherMin = document.querySelector(".weather-min");
